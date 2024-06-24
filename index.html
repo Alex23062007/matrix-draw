@@ -9,10 +9,19 @@
     <title>Draw</title>
 </head>
 
-<body>
+<body id="body">
     <p class="title">draw ig</p>
     <button id="testing">bru</button>
-    <div>
+    <div class="container">
+        <div class="settings">
+            <p> Paint settings </p>
+            <div>
+                <input type="color" id="colourpicked" oninput="updateColour()" value="#ff0000" class="colour">
+            </div>
+
+            <input type="color" id="bgcolourpicked" oninput="updateBG()" value="#000000" class="colour">
+
+        </div>
         <table id="canvas" class="canvas"></table>
     </div>
 </body>
