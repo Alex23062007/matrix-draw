@@ -7,6 +7,7 @@ body {
     background-color: rgb(0, 0, 0);
     text-align: center;
     font-family: "Coolvetica";
+    margin-left: 0;
 }
 
 .settingtext {
@@ -47,9 +48,47 @@ body {
     z-index: 1;
     position: fixed;
     background-color: beige;
+    height: 100%;
+    left: -300px;
+    top: 0;
+    width: 250px;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 50px;
+    box-shadow: 10px 6px 10px 2px rgba(109, 109, 98, 0.385);
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    align-content: center;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.sidebutton {
+    align-content: center;
+    z-index: 1;
+    position: relative;
+    background-color: beige;
     width: 20vw;
-    height: auto;
-    left: 4vw;
+    height: 50px;
+    width: 100px;
+    padding-right: 10px;
+    float: left;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: 0.3s;
+    overflow: hidden;
+    left: -75px;
+    cursor: pointer;
+}
+
+.sidebutton:hover {
+    left: 0;
 }
 
 table,
@@ -71,10 +110,6 @@ td {
 
 tr {
     height: 7px;
-}
-
-.container {
-    margin-top: 30px;
 }
 
 .animtext {

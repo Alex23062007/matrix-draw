@@ -1,11 +1,18 @@
 var canvas = document.getElementById("canvas");
 var width = 64;
 var height = 64;
-var test = document.getElementById("testing");
+var canvasBtn = document.getElementById("makecanvas");
 var colour = document.getElementById("colourpicked").value;
-var body = document.getElementById("body")
 var bgColour = document.getElementById("bgcolourpicked").value;
 
+
+
+function openSidebar() {
+    document.getElementById("sidebar").style.left = "0";
+}
+function closeSidebar() {
+    document.getElementById("sidebar").style.left = "-300px";
+}
 
 function updateColour() {
     colour = document.getElementById("colourpicked").value;
@@ -13,7 +20,7 @@ function updateColour() {
 
 function updateBG() {
     bgColour = document.getElementById("bgcolourpicked").value;
-    body.setAttribute("style", "background-color:" + bgColour)
+    document.getElementById("body").setAttribute("style", "background-color:" + bgColour)
 }
 
 function createCanvas() {
@@ -47,7 +54,7 @@ function mouseClickCell(e) {
     this.setAttribute("style", "background-color: " + colour)
 }
 
-test.addEventListener("click", () => {
+canvasBtn.addEventListener("click", () => {
     clearCanvas();
     createCanvas();
 });
