@@ -3,18 +3,40 @@
     src: url(coolvetica.otf);
 }
 
-
 body {
     background-color: rgb(0, 0, 0);
     text-align: center;
     font-family: "Coolvetica";
 }
 
+.settingtext {
+    float: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 5vw;
+}
+
+.settinginput {
+    float: right;
+    margin-right: 5vw;
+}
+
+.settingstitle {
+    letter-spacing: 10px;
+    font-weight: 100;
+}
+
+.colorpick-eyedropper-input-trigger {
+    display: none;
+}
+
 .title {
     margin-top: 0px;
-    font-size: 60px;
+    font-size: 4rem;
+    font-weight: 500;
     text-align: center;
     color: white;
+    text-transform: uppercase;
 }
 
 .canvas {
@@ -27,7 +49,7 @@ body {
     background-color: beige;
     width: 20vw;
     height: auto;
-    left: 8vw;
+    left: 4vw;
 }
 
 table,
@@ -39,6 +61,7 @@ tr {
     border-style: solid;
     border-color: white;
     background-color: rgb(0, 0, 0);
+    pointer-events: auto;
 }
 
 td {
@@ -50,6 +73,63 @@ tr {
     height: 7px;
 }
 
-.contrainer {
+.container {
     margin-top: 30px;
+}
+
+.animtext {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    overflow: hidden;
+}
+
+.animtext .title {
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+    max-width: none;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translate(100vw, 0);
+    }
+
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
+
+
+@keyframes spinny {
+    0% {
+        transform: rotate(-55deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.sorrynotsorry {
+    z-index: 9999;
+    position: fixed;
+    display: auto;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    font-size: 10vw;
+}
+
+.p {
+    animation: spinny 1s cubic-bezier(0, .5, 1, -0.5) infinite;
+    position: relative;
+}
+
+@media screen and (min-width: 1024px) {
+    .sorrynotsorry {
+        display: none;
+    }
 }

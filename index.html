@@ -10,15 +10,24 @@
 </head>
 
 <body id="body">
-    <p class="title">draw ig</p>
+    <div class="sorrynotsorry">
+        <h2 class="p">SORRY!</h2>
+        <p>this website doesn't work on mobile...</p>
+    </div>
+    <div class="animtext">
+        <p class="title">64x64 drawing grid&nbsp;</p>
+    </div>
     <button id="testing">bru</button>
+    <span class="sidebutton">⚙</span>
     <div class="container">
         <div class="settings">
-            <p> Paint settings </p>
-            <div>
-                <input type="color" id="colourpicked" oninput="updateColour()" value="#ff0000" class="colour">
+            <h2 class="settingstitle">SETTINGS</h2>
+            <div class="settingdiv">
+                <p class="settingtext">Pen Colour</p>
+                <input type="color" id="colourpicked" class="settinginput" oninput="updateColour()" value="#ff0000"
+                    class="colour">
             </div>
-
+            <br>
             <input type="color" id="bgcolourpicked" oninput="updateBG()" value="#000000" class="colour">
 
         </div>

@@ -44,7 +44,7 @@ function mouseOverCell(e) {
 }
 
 function mouseClickCell(e) {
-    console.log("click!!!!")
+    this.setAttribute("style", "background-color: " + colour)
 }
 
 test.addEventListener("click", () => {
