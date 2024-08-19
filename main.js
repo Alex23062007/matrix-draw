@@ -2,15 +2,142 @@ var canvas = document.getElementById("canvas");
 var width = 64;
 var height = 64;
 var canvasBtn = document.getElementById("makecanvas");
+var importBtn = document.getElementById("importcanvas");
 var colour = document.getElementById("colourpicked").value;
 var bgColour = document.getElementById("bgcolourpicked").value;
 var savedGrid = [];
-var save = document.getElementById("save");
+var exportBtn = document.getElementById("export");
 var body = document.getElementById("body");
+var save = document.getElementById("save");
+
+function createPopup(buttons, type, content) {
+    return new Promise((resolve) => {
+        const popup = document.getElementById("popup")
+        const button1 = document.getElementById("button1")
+        const button2 = document.getElementById("button2")
+        const button3 = document.getElementById("button3")
+        const textarea = document.getElementById("submission")
+        const title = document.getElementById("popupTitle")
+        const text = document.getElementById("popupText")
+        const popupContent = document.getElementById("popupContent")
+        popup.style.overflow = "auto"
+        document.body.style.overflow = "hidden"
+        if (buttons === "yn") {
+            button1.style.display = "block"
+            button2.style.display = "block"
+            button1.innerHTML = "Yes"
+            button2.innerHTML = "No"
+            button1.addEventListener("click", () => {
+                resolve(true);
+                closePopup()
+            });
+            button2.addEventListener("click", () => {
+                resolve(false);
+                closePopup()
+            });
+        }
+        else if (buttons === "ok") {
+            button1.style.display = "block"
+            button1.innerHTML = "OK"
+            button1.addEventListener("click", () => {
+                resolve(true);
+                closePopup()
+            })
+        }
+        else if (buttons === "blank") {
+        }
+        else if (buttons === "force") {
+            button1.style.display = "block";
+            button2.style.display = "block";
+            button1.innerHTML = "OK";
+            button2.innerHTML = "Complete Anyway";
+            button1.addEventListener("click", () => {
+                resolve(false)
+                closePopup();
+            })
+            button2.addEventListener("click", () => {
+                resolve(true);
+                closePopup();
+            })
+        }
+        else if (buttons === "submit") {
+            button1.style.display = "block"
+            button1.innerHTML = "Submit"
+            button1.addEventListener("click", () => {
+                resolve(true);
+                closePopup()
+            })
+        }
+        else {
+            button1.style.display = "block"
+            button1.innerHTML = "debug: Invalid Button Type!!"
+        }
+
+        if (type === "info") {
+            title.innerHTML = "Information"
+            title.style.color = "#67f5ff"
+        }
+        else if (type === "caution") {
+            title.innerHTML = "Caution";
+            title.style.color = "#ffdf77";
+        }
+        else if (type === "submission") {
+            title.innerHTML = "Submission";
+            title.style.color = "#67f5ff";
+        }
+        else if (type === "warning") {
+            title.innerHTML = "Warning";
+            title.style.color = "#cd1000"
+        }
+        else if (type === "error") {
+            title.innerHTML = "Error";
+            title.style.color = "#cd1000";
+        }
+        else {
+            title.innerHTML = type;
+        }
+        if (content === "submitGen") {
+            textarea.style.display = "block"
+            text.innerHTML = "this feature does not work yet!";
+        }
+        else {
+            text.innerHTML = content;
+        }
+
+        popup.style.display = "block"
+        window.addEventListener("click", (event) => {
+            if (event.target == popup) {
+                closePopup();
+            }
+        }
+        )
+        const closeBtn = document.getElementById("closePopup")
+        function closePopup() {
+            popup.style.overflow = "hidden";
+            popupContent.style.animation = "contentOut 0.6s";
+            popup.style.animation = "bgOut 0.6s";
+            popup.addEventListener("animationend", (event) => {
+                if (event.animationName === "bgOut") {
+                    popup.style.display = "none"
+                    button1.style.display = "none";
+                    button2.style.display = "none";
+                    button3.style.display = "none";
+                    popup.style.animation = "";
+                    popupContent.style.animation = "";
+                    document.body.style.overflow = "auto";
+                }
+            })
+        }
+        closeBtn.addEventListener("click", () => {
+            closePopup()
+        })
+    });
+}
 
 function openSidebar() {
     document.getElementById("sidebar").style.left = "0";
 }
+
 function closeSidebar() {
     document.getElementById("sidebar").style.left = "-300px";
 }
@@ -35,6 +162,7 @@ function createCanvas() {
             cell.setAttribute("id", "cell");
         }
     }
+    exportBtn.style.visibility = "visible";
     save.style.visibility = "visible";
     console.log(colour)
 }
@@ -83,7 +211,7 @@ canvasBtn.addEventListener("click", () => {
     createCanvas();
 });
 
-save.addEventListener("click", () => {
+exportBtn.addEventListener("click", () => {
     var cellList = document.querySelectorAll("#cell")
     cellList.forEach(function (cell) {
         if (!cell.style.backgroundColor) {
@@ -101,3 +229,9 @@ save.addEventListener("click", () => {
     editText(savedGrid);
     savedGrid = [];
 });
+
+importBtn.addEventListener("click", () => {
+    createPopup("submit", "submission", "submitGen")
+});
+
+

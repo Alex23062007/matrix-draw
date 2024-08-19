@@ -37,16 +37,32 @@
 
     <div class="gencanvasdiv">
         <button class="gencanvas" id="makecanvas">Generate Canvas</button>
+        <button class="gencanvas" id="importcanvas">Import Canvas from String [WIP]</button>
     </div>
     <div class="gencanvasdiv">
         <table id="canvas" class="canvas"></table>
     </div>
     <div class="gencanvasdiv">
-        <button class="savebtn" id="save">Export to string</button>
+        <button class="exportbtn" id="save">Save canvas [WIP]</button>
+        <button class="exportbtn" id="export">Export to string</button>
     </div>
 
     <div class="newTxt">
         <p id="saveTxt"></p>
+    </div>
+
+    <div id="popup" class="popup">
+        <div id="popupContent" class="popupContent">
+            <span id="closePopup" class="close">&times;</span>
+            <p id="popupTitle" class="popupTitle">Information</p>
+            <p id="popupText" class="popupText">Fallback! Something has gone wrong...</p>
+            <textarea class="textarea" id="submission"></textarea>
+            <div class="popupOptions">
+                <div id="button1" class="button1">1</div>
+                <div id="button2" class="button2">2</div>
+                <div id="button3" class="button3">3</div>
+            </div>
+        </div>
     </div>
 </body>
 
