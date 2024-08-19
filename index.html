@@ -17,7 +17,7 @@
     <div class="animtext">
         <p class="title">64x64 drawing grid&nbsp;</p>
     </div>
-    <button id="makecanvas">bru</button>
+
     <div class="sidebutton" onclick="openSidebar()">&nbsp;SETTINGS&nbsp;&nbsp;&nbsp;⚙</div>
     <div class="settings" id="sidebar">
         <span class="close" id="closeBtn" onclick="closeSidebar()">&times;</span>
@@ -33,10 +33,18 @@
             <input type="color" id="bgcolourpicked" class="settinginput" oninput="updateBG()" value="#000000"
                 class="colour">
         </div>
-
     </div>
-    <table id="canvas" class="canvas"></table>
-    <button class="savebtn" id="save">SAVE</button>
+
+    <div class="gencanvasdiv">
+        <button class="gencanvas" id="makecanvas">Generate Canvas</button>
+    </div>
+    <div class="gencanvasdiv">
+        <table id="canvas" class="canvas"></table>
+    </div>
+    <div class="gencanvasdiv">
+        <button class="savebtn" id="save">Export to string</button>
+    </div>
+
     <div class="newTxt">
         <p id="saveTxt"></p>
     </div>

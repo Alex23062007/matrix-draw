@@ -35,7 +35,7 @@ function createCanvas() {
             cell.setAttribute("id", "cell");
         }
     }
-
+    save.style.visibility = "visible";
     console.log(colour)
 }
 
@@ -59,8 +59,14 @@ function mouseClickCell(e) {
 
 function editText(text) {
     var newText = document.getElementById("saveTxt");
-    newText.innerHTML = btoa(`${text}`);
-    console.log(`added ${text}`);
+    if (document.querySelectorAll("#cell") === undefined || document.querySelectorAll("#cell").length == 0) {
+        newText.innerHTML = "Table does not exist or is empty!"
+    }
+    else {
+        newText.innerHTML = btoa(`${text}`);
+        console.log(`added ${text}`);
+    }
+
 }
 
 function componentToHex(c) {
