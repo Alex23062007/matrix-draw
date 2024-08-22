@@ -63,9 +63,42 @@ function createPopup(buttons, type, content) {
         else if (buttons === "submit") {
             button1.style.display = "block"
             button1.innerHTML = "Submit"
-            button1.addEventListener("click", () => {
-                resolve(true);
-                closePopup()
+            button1.addEventListener("click", async () => {
+                submissionData = document.getElementById("submission").value;
+                console.log(submissionData)
+                if (submissionData == "") {
+                    text.innerHTML = "Submission Empty!"
+                }
+                else {
+
+
+                    try {
+                        var colourData = atob(submissionData);
+                        var colourDataList = colourData.split(",");
+                        console.log(colourData)
+                        console.log(colourDataList)
+                        if (colourDataList[0][0] != "#") {
+                            text.innerHTML = "Invalid Save Data"
+                            throw new Error("invalid");
+                        }
+                        if (document.querySelectorAll("#cell") === undefined || document.querySelectorAll("#cell").length == 0) {
+                            createCanvas();
+                        }
+                        var cellList = document.querySelectorAll("#cell")
+
+                        for (let i = 0; i < colourDataList.length; i++) {
+                            var c = cellList[i]
+                            c.style.backgroundColor = colourDataList[i];
+                        }
+                        text.innerHTML = "Imported Successfully"
+                        return;
+                    }
+                    catch (err) {
+                        console.log("caught")
+                        text.innerHTML = "Invalid Save Data"
+                        return;
+                    }
+                }
             })
         }
         else {
@@ -98,7 +131,7 @@ function createPopup(buttons, type, content) {
         }
         if (content === "submitGen") {
             textarea.style.display = "block"
-            text.innerHTML = "this feature does not work yet!";
+            text.innerHTML = " "
         }
         else {
             text.innerHTML = content;
@@ -155,6 +188,7 @@ function createCanvas() {
     spriteValue = new Array(width * height)
     for (i = 0; i < height; i++) {
         const row = canvas.insertRow(i);
+        row.setAttribute("id", "row")
         for (j = 0; j < width; j++) {
             var cell = row.insertCell(j);
             cell.addEventListener("mouseover", mouseOverCell);
@@ -233,5 +267,3 @@ exportBtn.addEventListener("click", () => {
 importBtn.addEventListener("click", () => {
     createPopup("submit", "submission", "submitGen")
 });
-
-
